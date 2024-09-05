@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Icarus: Your Productivity Companion",
+    "description": "Icarus is a browser extension that allows users to customize any webpage or online reading content to their own preferences.",
+    "version": "1.4",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "128": "butterfly.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "run_at": "document_idle",
+            "css": ["styles.css"]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["identity", "identity.email", "storage", "activeTab", "scripting"],
+    "host_permissions": ["<all_urls>"],
+    "icons": {
+        "128": "butterfly.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["images/*"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+    
+}
